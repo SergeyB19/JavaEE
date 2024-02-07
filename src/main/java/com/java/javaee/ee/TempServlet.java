@@ -8,14 +8,44 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Enumeration;
+import java.util.Map;
 
 @WebServlet("/temp")
 public class TempServlet extends HttpServlet {
+
     int i = 0;
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+        doGet(req,resp);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         synchronized (this) {
+            String one = req.getParameter("one");
+            String two = req.getParameter("two");
+            System.out.println(one);
+            String[] ones = req.getParameterValues("one");
+            for (String s : ones) {
+                System.out.println(s);
+            }
+            Enumeration<String> parameterNames = req.getParameterNames();
+            while (parameterNames.hasMoreElements()) {
+                System.out.println(parameterNames.nextElement());
+                String elementName = parameterNames.nextElement();
+                System.out.println(elementName + " = " + req.getParameter(elementName));
+            }
+            Map<String, String[]> parameterMap = req.getParameterMap();
+
+            System.out.println(req.getRequestURL());
+            System.out.println(req.getRequestURI());
+            System.out.println(req.getServletPath());
+            System.out.println(req.getRemoteHost());
+            System.out.println(req.getLocalPort());
+            System.out.println(req.getQueryString());
 
             for (int j = 0; j < 1_000_000; j++) {
                 i++;
@@ -24,8 +54,24 @@ public class TempServlet extends HttpServlet {
             i = k;*/
                 System.out.println(i);
             }
+
             super.doGet(req, resp);
             System.out.println(Thread.currentThread().getName());
+
+
+            resp.getWriter().write("<html>" +
+                    "<head>" +
+                    "</head>" +
+                    "<body>" +
+                    "one = " + one +
+                    "two = " + two +
+                    "<form action = 'temp' method = 'post>" +
+                    "<input type = 'text' name = 'one>" +
+                    "<input type = 'text' name = 'two'>" +
+                    "<input type = 'submit' name = 'submit'>" +
+                    "</form>" +
+                    "</body>" +
+                    "</html>");
         }
     }
 
