@@ -26,7 +26,8 @@ public class TempServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         synchronized (this) {
             String one = req.getParameter("one");
-            String two = req.getParameter("two");
+            one = one == null ? "" : one.replaceAll("<", "&lt;").replaceAll(">","&gt;");
+//            String two = req.getParameter("two");
             System.out.println(one);
             String[] ones = req.getParameterValues("one");
             for (String s : ones) {
@@ -64,8 +65,9 @@ public class TempServlet extends HttpServlet {
                     "</head>" +
                     "<body>" +
                     "one = " + one +
-                    "two = " + two +
+//                    "two = " + two +
                     "<form action = 'temp' method = 'post>" +
+                    "<textarea name = 'one'/></textarea>" +
                     "<input type = 'text' name = 'one>" +
                     "<input type = 'text' name = 'two'>" +
                     "<input type = 'submit' name = 'submit'>" +
