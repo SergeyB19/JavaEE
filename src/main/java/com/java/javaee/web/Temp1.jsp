@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Title</title>
-</head
+</head>
     <body>
     <%=request.getMethod()%>
     <%=session.getAttribute("")%>
