@@ -1,0 +1,11 @@
+<html>
+<head>
+    <title>Title</title>
+</head>
+    <body>
+    <%=request.getMethod()%>
+    <%=session.getAttribute("")%>
+    <%=response.setStatus(200)%>
+    <%=config.getInitParameter("")%>
+    </body>
+</html>
