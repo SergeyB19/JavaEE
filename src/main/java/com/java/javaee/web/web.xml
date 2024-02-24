@@ -1,0 +1,11 @@
+<web-app>
+<jsp-config>
+    <jsp-property-group>
+        <el-ignored>
+            false
+        </el-ignored>
+        <url-pattern>*.jsp</url-pattern>
+            <scripting-invalid>false</scripting-invalid>
+    </jsp-property-group>
+</jsp-config>
+</web-app>
