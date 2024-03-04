@@ -1,0 +1,18 @@
+<sevlet>
+    <servlet-name>init</servlet-name>
+    <servlet-class>servlets.InitServlet</servlet-class>
+    <init-param>
+        <init-name>name</init-name>
+        <param-value>Max</param-value>
+    </init-param>
+    <init-param>
+        <init-name>age</init-name>
+        <param-value>22</param-value>
+    </init-param>
+
+    <servlet-mapping>
+        <servlet-name>init</servlet-name>
+        <url-pattern>init</url-pattern>
+    </servlet-mapping>
+
+</sevlet>
